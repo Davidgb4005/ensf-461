@@ -1,0 +1,8 @@
+total 48
+-rwxrwxr-x 1 dave dave 23976 Oct  3 14:09 a.out
+-rw-rw-r-- 1 dave dave   362 Oct  3 14:05 output.txt
+-rwx------ 1 dave dave  1505 Oct  3 14:08 parser.c
+-rwx------ 1 dave dave   511 Oct  3 14:08 parser.h
+-rwx------ 1 dave dave  2049 Oct  3 14:09 shell.c
+-rw-rw-r-- 1 dave dave  2325 Oct  3 14:07 trie.c
+-rw-rw-r-- 1 dave dave   716 Oct  3 14:03 trie.h
