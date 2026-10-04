@@ -1,9 +1,0 @@
-total 44
--rwxrwxr-x 1 dave dave 22656 Oct  3 09:25 a.out
--rw-rw-r-- 1 dave dave     0 Oct  3 09:09 dave
--rw-rw-r-- 1 dave dave     0 Oct  3 09:25 output.txt
--rwx------ 1 dave dave  2063 Oct  3 08:35 parser.c
--rwx------ 1 dave dave  1592 Oct  3 09:22 parser.cb
--rwx------ 1 dave dave   481 Oct  3 08:09 parser.h
--rw-rw-r-- 1 dave dave   602 Oct  2 16:30 pipe.c
--rwx------ 1 dave dave  1788 Oct  3 09:25 shell.c
