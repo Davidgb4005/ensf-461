@@ -17,9 +17,9 @@ typedef struct execution
 } execution;
 
 
-//ToDo: Here are some suggested parsing commands, you may want to expand this list, 
-//Please feel free to change modify the commands below to suit your needs
 
+
+// Parses command input into a linked list of execution nodes.
 execution *parse_command(char *input,trie_node * root);
 
 #endif

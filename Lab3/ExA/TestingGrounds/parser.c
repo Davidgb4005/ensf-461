@@ -1,21 +1,18 @@
 #include "parser.h"
 #include "stdint.h"
 #include "string.h"
-#include "tokenizer.h"
+#include "lexer.h"
 
 
 #include <stdlib.h>
 #include <string.h>
-#define MAX_CMD_SIZE 64
-#define MAX_INPUT_SIZE 1024
+#define MAX_CMD_SIZE 128
+
 
 
 execution * parse_command(char *input,trie_node * root)
 {
-    if (strlen(input)>MAX_INPUT_SIZE){
-        fprintf(stderr, "Max input size exceeded\n");
-        exit(1);
-    }
+
     execution *tail = NULL;
     execution *node = malloc(sizeof(execution));
     execution *head = node;

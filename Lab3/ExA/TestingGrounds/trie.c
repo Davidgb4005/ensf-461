@@ -5,7 +5,7 @@
 //#define SUPPORTED_OPERATOR_COUNT 7
 //#define SUPPORTED_OPERATORS {'<','>','|','2','&',';','!'}
 
-const static char supported_operators[SUPPORTED_OPERATOR_COUNT] =
+const static char * supported_operators[SUPPORTED_OPERATOR_COUNT] =
     SUPPORTED_OPERATORS;
 
 int charToTrieIndex(const char c)
@@ -15,7 +15,7 @@ int charToTrieIndex(const char c)
     case '|':
         return 0;
         break;
-    case '>':
+    case '&':
         return 1;
         break;
     case '<':
@@ -24,7 +24,7 @@ int charToTrieIndex(const char c)
     case '2':
         return 3;
         break;
-    case '&':
+    case '>':
         return 4;
         break;
     case ';':
@@ -38,16 +38,12 @@ int charToTrieIndex(const char c)
     }
 }
 
-
-
-
 trie_node *trieAddOperator(
     trie_node *root,
     const char *op_token,
     operator_e operator_id)
 {
     trie_node *cursor = root;
-
     while (*op_token)
     {
         int child_index = charToTrieIndex(*op_token);
@@ -73,7 +69,6 @@ trie_node *trieAddOperator(
 
         op_token++;
     }
-
     cursor->word_end = 1;
     cursor->operator_id = operator_id;
 
@@ -83,14 +78,12 @@ trie_node *trieAddOperator(
 operator_e trieSearch(trie_node *root, const char *op_token)
 {
     trie_node *cursor = root;
-
     while (*op_token)
     {
         int child_index = charToTrieIndex(*op_token);
         if (child_index > SUPPORTED_OPERATOR_COUNT){
             return no_op;
         }
-
         if (cursor->children[child_index])
         {
             cursor = cursor->children[child_index];
@@ -98,19 +91,13 @@ operator_e trieSearch(trie_node *root, const char *op_token)
         else
         {
             return no_op;
-            //printf("Operator Doesn't Exist\n");
-            //exit(1);
         }
-
         op_token++;
     }
-
     if (!cursor->word_end)
     {
-        //printf("Operator Doesn't Exist\n");
         return no_op;
     }
-
     return cursor->operator_id;
 }
 void trieFree(trie_node *node)
