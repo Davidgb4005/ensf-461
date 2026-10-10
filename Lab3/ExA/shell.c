@@ -4,10 +4,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include "exec_wrappers.h"
-#define BUFLEN 1024
-#define TESTING 1
-extern int process_count;
 
+#define BUFLEN 1024
+
+extern int process_count;
+int test_enabled = 0;
 int main(void)
 {
     trie_node *root = calloc(1, sizeof(trie_node));
@@ -17,49 +18,19 @@ int main(void)
 
     char input[BUFLEN];
 
+    printf("Welcome to the Group 24 shell! Enter commands, enter 'quit' to exit\n");
+    
     while (1)
     {
         process_count = 0;
         printf("$ ");
-        #if TESTING == 0
-            if (fgets(input, sizeof(input), stdin) == NULL)
-            {
-                break;
-            }
-        #else
-            static int i = 0;
+        if (fgets(input, sizeof(input), stdin) == NULL)
+        {
+            break;
+        }
 
-            const char *tests[] = {
-                "echo hello",
-                "echo hello world",
-                "echo \"hello world\"",
-                "echo hell\"o world\"",
-                "echo hello | grep hello",
-                "echo hello | grep -o ell",
-                "echo \"hello world\" | grep -o hello | cat",
-                "echo \"hello world\" | grep hello | grep -o world",
-                "ls /this/path/does/not/exist | grep XYZ",
-                "ls /this/path/does/not/exist |& grep XYZ",
-                "ls /this/path/does/not/exist |& grep cannot",
-                "ls /this/path/does/not/exist |& cat",
-                "this_command_does_not_exist",
-                "exit"
-            };
-
-            const int test_count = sizeof(tests) / sizeof(tests[0]);
-
-            if (i >= test_count) {
-                break;
-            }
-
-            printf("TEST: %s\n", tests[i]);
-            strcpy(input, tests[i]);
-            i++;
-
-        #endif
         input[strcspn(input, "\n")] = '\0';
-
-        if (strcmp(input, "exit") == 0)
+        if (strcmp(input, "quit") == 0 || strcmp(input, "exit") == 0)
         {     
             trieFree(root);
             break;

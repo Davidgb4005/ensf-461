@@ -16,9 +16,6 @@ typedef struct execution
     struct execution *next_exec;
 } execution;
 
-
-
-
 // Parses command input into a linked list of execution nodes.
 execution *parse_command(char *input,trie_node * root);
 

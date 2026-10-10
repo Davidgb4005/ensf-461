@@ -13,8 +13,8 @@ int charIsDelimeter(char c,const char * delimeters){
 }
 void charCleanUpAndClear(char * tkn,char clean_up_char){
     int tkn_count = 0;
-    char * debug_string = tkn;
-    int len = strlen(tkn);
+    //char * debug_string = tkn;
+    //int len = strlen(tkn);
     while(*(tkn+tkn_count)){
         if(*(tkn+tkn_count) == clean_up_char){
             tkn_count++;
@@ -46,7 +46,6 @@ void charCleanUp(char *tkn,char clean_up_char)
     *write_ptr = '\0';
 }
 char * tokenize(char * input,const char * delimeters,char ** cursor){
-    const char * delimeter_cursor = delimeters;
     int dir_quote = 0;
     if(input != NULL){
         *cursor = input;

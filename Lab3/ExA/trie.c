@@ -5,7 +5,7 @@
 //#define SUPPORTED_OPERATOR_COUNT 7
 //#define SUPPORTED_OPERATORS {'<','>','|','2','&',';','!'}
 
-const static char * supported_operators[SUPPORTED_OPERATOR_COUNT] =
+static const char * supported_operators[SUPPORTED_OPERATOR_COUNT] =
     SUPPORTED_OPERATORS;
 
 int charToTrieIndex(const char c)

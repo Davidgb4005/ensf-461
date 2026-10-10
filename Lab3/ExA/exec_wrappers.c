@@ -30,7 +30,7 @@ const char *resolve_path(const char *cmd)
             dir,
             cmd);
 
-        if (ret < 0 || ret >= sizeof(full_path))
+        if (ret < 0 || (long unsigned int)ret >= sizeof(full_path))
         {
             dir = strtok(NULL, ":");
             continue;
@@ -94,15 +94,17 @@ void pipeInExecv(execution *cmd, int in_pipe)
     pid_t pid = fork();
     if (pid == 0)
     {
+
         dup2(in_pipe, STDIN_FILENO);
         close(in_pipe);
-
         const char *path = resolve_path(cmd->cmd);
+        
         if (path == NULL)
         {
             fprintf(stderr, "%s: command not found\n", cmd->cmd);
             _exit(127);
         }
+
         execv(path, cmd->args);
         perror("execv");
         _exit(127);
